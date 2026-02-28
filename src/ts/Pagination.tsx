@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 const ITEMS = Array.from({ length: 23 }, (_, i) => `Item ${i + 1}`);
 

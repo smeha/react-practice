@@ -30,16 +30,9 @@ export function TwoSum() {
   }
 
   return (
-    <div style={{ fontFamily: "monospace" }}>
-      <p style={{ margin: "0 0 4px" }}>
-        <strong>Problem:</strong> Given an array of integers and a target, return the indices
-        of the two numbers that add up to the target. Time O(n), space O(n).
-      </p>
-      <p style={{ margin: "0 0 8px", color: "#888", fontSize: 13 }}>
-        Example: nums=[2,7,11,15], target=9 → [0,1]
-      </p>
+    <div>
       <label>
-        nums:{" "}
+        numbers:{" "}
         <input
           value={numsInput}
           onChange={(e) => setNumsInput(e.target.value)}

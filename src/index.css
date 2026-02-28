@@ -59,6 +59,12 @@ button:focus-visible {
   border-top: 1px solid gray;
 }
 
+.examples, .complexity {
+  margin: "0 0 8px";
+  color: "#888";
+  font-size: 13px;
+}
+
 .section:first-child {
   border-top: none;
 }

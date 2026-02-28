@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// ── algorithm ────────────────────────────────────────────────────────────────
 function maxSubarray(nums: number[]): { sum: number; from: number; to: number } {
   if (nums.length === 0) throw new Error("array must be non-empty");
   let best = nums[0], cur = nums[0], from = 0, to = 0, start = 0;
@@ -12,7 +11,6 @@ function maxSubarray(nums: number[]): { sum: number; from: number; to: number } 
   return { sum: best, from, to };
 }
 
-// ── component ─────────────────────────────────────────────────────────────────
 export function MaxSubarray() {
   const [numsInput, setNumsInput] = useState("-2, 1, -3, 4, -1, 2, 1, -5, 4");
 
@@ -30,16 +28,9 @@ export function MaxSubarray() {
   }
 
   return (
-    <div style={{ fontFamily: "monospace" }}>
-      <p style={{ margin: "0 0 4px" }}>
-        <strong>Problem:</strong> Find the contiguous subarray with the largest sum
-        (Kadane's algorithm). Return sum and start/end indices. Time O(n), space O(1).
-      </p>
-      <p style={{ margin: "0 0 8px", color: "#888", fontSize: 13 }}>
-        Example: [-2,1,-3,4,-1,2,1,-5,4] → sum=6, indices=[3,6]
-      </p>
+    <div>
       <label>
-        nums:{" "}
+        number(s):{" "}
         <input
           value={numsInput}
           onChange={(e) => setNumsInput(e.target.value)}

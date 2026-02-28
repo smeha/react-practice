@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 type TodoItem = { id: string; text: string; done: boolean };
 

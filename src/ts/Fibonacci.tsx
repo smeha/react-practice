@@ -29,7 +29,6 @@ export function Fibonacci() {
   return (
     <div>
       <input
-        // type="number"
         value={n}
         onChange={(e) => setN(Number(e.target.value))}
         min={0}

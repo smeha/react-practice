@@ -68,15 +68,7 @@ export function AsyncSearch() {
   const empty = !loading && !error && query.trim() && results.length === 0;
 
   return (
-    <div style={{ fontFamily: "monospace" }}>
-      <p style={{ margin: "0 0 4px" }}>
-        <strong>Problem:</strong> Debounce input (400 ms), fetch on each settled query,
-        abort any in-flight request when a new one starts. Handle loading / error states.
-      </p>
-      <p style={{ margin: "0 0 8px", color: "#888", fontSize: 13 }}>
-        Uses JSONPlaceholder /posts?title_like=… · shows first 5 results
-      </p>
-
+    <div>
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}

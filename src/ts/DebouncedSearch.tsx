@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 type Item = { id: string; label: string };
 
-// Mock API
 async function fetchResults(q: string, signal?: AbortSignal): Promise<Item[]> {
   await new Promise((r) => setTimeout(r, 300));
   if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
@@ -27,8 +26,7 @@ export function DebouncedSearch() {
       setLoading(true);
       try {
         const res = await fetchResults(q, controller.signal);
-        // Race protection
-        if (myRequestId === requestIdRef.current) setItems(res);
+        if (myRequestId === requestIdRef.current) setItems(res); // race protection
       } catch (e: any) {
         if (e?.name !== "AbortError") console.error(e);
       } finally {

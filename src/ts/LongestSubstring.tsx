@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// ── algorithm ────────────────────────────────────────────────────────────────
 function lengthOfLongestSubstring(s: string): { length: number; substring: string } {
   const seen = new Map<string, number>();
   let best = 0, start = 0, bestStart = 0;
@@ -18,23 +17,15 @@ function lengthOfLongestSubstring(s: string): { length: number; substring: strin
   return { length: best, substring: s.slice(bestStart, bestStart + best) };
 }
 
-// ── component ─────────────────────────────────────────────────────────────────
 export function LongestSubstring() {
   const [input, setInput] = useState("abcabcbb");
 
   const { length, substring } = lengthOfLongestSubstring(input);
 
   return (
-    <div style={{ fontFamily: "monospace" }}>
-      <p style={{ margin: "0 0 4px" }}>
-        <strong>Problem:</strong> Find the length of the longest substring without
-        repeating characters. Sliding window. Time O(n), space O(min(n, alphabet)).
-      </p>
-      <p style={{ margin: "0 0 8px", color: "#888", fontSize: 13 }}>
-        Examples: "abcabcbb" → 3 ("abc"), "bbbbb" → 1, "pwwkew" → 3 ("wke")
-      </p>
+    <div>
       <label>
-        s:{" "}
+        string:{" "}
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}

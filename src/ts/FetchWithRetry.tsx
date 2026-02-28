@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function fakeFetch(): Promise<string[]> {
   return new Promise((resolve, reject) => {
