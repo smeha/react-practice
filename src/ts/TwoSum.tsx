@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// ── algorithm ────────────────────────────────────────────────────────────────
 function twoSum(nums: number[], target: number): [number, number] | null {
   const seen = new Map<number, number>();
   for (let i = 0; i < nums.length; i++) {
@@ -11,7 +10,6 @@ function twoSum(nums: number[], target: number): [number, number] | null {
   return null;
 }
 
-// ── component ─────────────────────────────────────────────────────────────────
 export function TwoSum() {
   const [numsInput, setNumsInput] = useState("2, 7, 11, 15");
   const [target, setTarget] = useState("9");

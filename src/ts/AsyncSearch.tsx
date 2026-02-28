@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 
-// ── utilities ─────────────────────────────────────────────────────────────────
 export async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -18,10 +17,8 @@ export function debounce<TArgs extends unknown[]>(
   };
 }
 
-// ── types ─────────────────────────────────────────────────────────────────────
 type Post = { id: number; title: string };
 
-// ── component ─────────────────────────────────────────────────────────────────
 export function AsyncSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Post[]>([]);
@@ -34,7 +31,7 @@ export function AsyncSearch() {
   const search = useMemo(
     () =>
       debounce(async (q: string) => {
-        abortRef.current?.abort();            // cancel previous in-flight request
+        abortRef.current?.abort(); // cancel previous in-flight request
         abortRef.current = new AbortController();
 
         if (!q.trim()) {
@@ -72,7 +69,7 @@ export function AsyncSearch() {
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="search posts…"
+        placeholder="search posts..."
         style={{ width: 240 }}
       />
       {loading && <span style={{ marginLeft: 10, color: "#888" }}>loading…</span>}
