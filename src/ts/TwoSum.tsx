@@ -47,7 +47,7 @@ export function TwoSum() {
           style={{ width: 60 }}
         />
       </label>
-      <span style={{ marginLeft: 12 }}>→ {output}</span>
+      <span style={{ marginLeft: 12 }}>{"=>"} {output}</span>
     </div>
   );
 }

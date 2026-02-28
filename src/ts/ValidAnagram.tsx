@@ -28,7 +28,7 @@ export function ValidAnagram() {
         2nd string:{" "}
         <input value={t} onChange={(e) => setT(e.target.value)} style={{ width: 140 }} />
       </label>
-      <span style={{ marginLeft: 12 }}>→ {result.toString()}</span>
+      <span style={{ marginLeft: 12 }}>{"=>"} {result.toString()}</span>
     </div>
   );
 }

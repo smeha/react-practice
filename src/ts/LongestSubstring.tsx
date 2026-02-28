@@ -32,7 +32,7 @@ export function LongestSubstring() {
           style={{ width: 220 }}
         />
       </label>
-      <span style={{ marginLeft: 12 }}>→ {length} &nbsp;<span style={{ color: "#888" }}>("{substring}")</span></span>
+      <span style={{ marginLeft: 12 }}>{"=>"} {length} &nbsp;<span style={{ color: "#888" }}>("{substring}")</span></span>
     </div>
   );
 }

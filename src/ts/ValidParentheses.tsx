@@ -28,7 +28,7 @@ export function ValidParentheses() {
           style={{ width: 160 }}
         />
       </label>
-      <span style={{ marginLeft: 12 }}>→ {output}</span>
+      <span style={{ marginLeft: 12 }}>{"=>"} {output}</span>
     </div>
   );
 }

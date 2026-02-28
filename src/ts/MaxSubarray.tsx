@@ -22,7 +22,7 @@ export function MaxSubarray() {
       return n;
     });
     const { sum, from, to } = maxSubarray(nums);
-    output = `sum=${sum}  indices=[${from}, ${to}]`;
+    output = `sum=${sum} ; indices=[${from}, ${to}]`;
   } catch (e) {
     output = (e as Error).message;
   }
@@ -37,7 +37,7 @@ export function MaxSubarray() {
           style={{ width: 300 }}
         />
       </label>
-      <span style={{ marginLeft: 12 }}>→ {output}</span>
+      <span style={{ marginLeft: 12 }}>{"=>"} {output}</span>
     </div>
   );
 }
