@@ -27,8 +27,8 @@ export function DebouncedSearch() {
       try {
         const res = await fetchResults(q, controller.signal);
         if (myRequestId === requestIdRef.current) setItems(res); // race protection
-      } catch (e: any) {
-        if (e?.name !== "AbortError") console.error(e);
+      } catch (e: unknown) {
+        if (!(e instanceof DOMException) || e.name !== "AbortError") console.error(e);
       } finally {
         if (myRequestId === requestIdRef.current) setLoading(false);
       }

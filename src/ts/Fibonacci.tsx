@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 function fibonacci(n: number): bigint {
-  if (!Number.isInteger(n) || n < 0){
-    throw new Error("n have to be integer and non-negative");
+  if (!Number.isInteger(n) || n < 0) {
+    throw new Error("n must be a non-negative integer");
   }
-  let a = 0n, b=1n;
-  for (let i=0; i<n; i++){
-    [a,b]=[b,a+b];
+  let a = 0n, b = 1n;
+  for (let i = 0; i < n; i++) {
+    [a, b] = [b, a + b];
   }
   return a;
 }
@@ -17,23 +17,29 @@ export function FibonacciList({ count = 30 }: { count?: number }) {
 }
 
 export function Fibonacci() {
-  const [n, setN] = useState(0);
+  const [input, setInput] = useState("0");
+
+  const n = Number(input);
+  const invalid = input.trim() === "" || isNaN(n) || !Number.isInteger(n) || n < 0;
 
   let result: string;
-  try {
-    result = fibonacci(n).toString();
-  } catch (e) {
-    result = (e as Error).message;
+  if (invalid) {
+    result = "enter a non-negative integer";
+  } else {
+    try {
+      result = fibonacci(n).toString();
+    } catch (e) {
+      result = (e as Error).message;
+    }
   }
 
   return (
     <div>
       <input
-        value={n}
-        onChange={(e) => setN(Number(e.target.value))}
-        min={0}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
-      <p>Fibonacci({n}) = {result}</p>
+      <p>Fibonacci({input || "?"}) = {result}</p>
     </div>
   );
 }

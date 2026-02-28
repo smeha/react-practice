@@ -11,8 +11,8 @@ export default function Root() {
     return (
       <>
         <nav style={navStyle}>
-          <button onClick={() => setPage("home")} style={backStyle}>← Back</button>
-          <span style={{ fontWeight: 600 }}>JavaScript (JSX)</span>
+          <button type="button" onClick={() => setPage("home")} style={backStyle}>← Back</button>
+          <span style={{ fontWeight: 600, flex: 1, textAlign: "center" }}>JavaScript (JSX)</span>
         </nav>
         <AppJS />
       </>
@@ -23,8 +23,8 @@ export default function Root() {
     return (
       <>
         <nav style={navStyle}>
-          <button onClick={() => setPage("home")} style={backStyle}>← Back</button>
-          <span style={{ fontWeight: 600 }}>TypeScript (TSX)</span>
+          <button type="button" onClick={() => setPage("home")} style={backStyle}>← Back</button>
+          <span style={{ fontWeight: 600, flex: 1, textAlign: "center" }}>TypeScript (TSX)</span>
         </nav>
         <AppTS />
       </>
@@ -34,14 +34,14 @@ export default function Root() {
   return (
     <div style={homeStyle}>
       <h1 style={{ marginBottom: 8 }}>React Practice</h1>
-      <p style={{ color: "#666", marginBottom: 40 }}>Pick a version to explore</p>
+      <p style={{ color: "#666", marginBottom: 40 }}>Pick a version to practice</p>
       <div style={{ display: "flex", gap: 24 }}>
-        <button onClick={() => setPage("js")} style={cardStyle("#f7df1e", "#000")}>
+        <button type="button" onClick={() => setPage("js")} style={cardStyle("#f7df1e", "#000")} className="select-card">
           <span style={{ fontSize: 48 }}>JS</span>
           <span>JavaScript</span>
           <span style={{ fontSize: 12, opacity: 0.7 }}>.jsx</span>
         </button>
-        <button onClick={() => setPage("ts")} style={cardStyle("#3178c6", "#fff")}>
+        <button type="button" onClick={() => setPage("ts")} style={cardStyle("#3178c6", "#fff")} className="select-card">
           <span style={{ fontSize: 48 }}>TS</span>
           <span>TypeScript</span>
           <span style={{ fontSize: 12, opacity: 0.7 }}>.tsx</span>
@@ -73,7 +73,6 @@ const cardStyle = (bg: string, color: string): React.CSSProperties => ({
   fontSize: 18,
   fontWeight: 600,
   boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
-  transition: "transform 0.15s, box-shadow 0.15s",
 });
 
 const navStyle: React.CSSProperties = {

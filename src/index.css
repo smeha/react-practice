@@ -69,6 +69,14 @@ button:focus-visible {
   border-top: none;
 }
 
+.select-card {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.select-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
+
 #root {
   width: 100%;
 }

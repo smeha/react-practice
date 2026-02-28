@@ -100,7 +100,7 @@ export const sections: Section[] = [
   {
     title: "Longest Substring Without Repeating Characters",
     description: "Find the length of the longest substring without repeating characters. Sliding window with a seen-char map; advance left pointer on repeat.",
-    examples: '"abcabcbb" => 3 ("abc") ; "bbbbb" => 1 ; "pwwkew"  3 ("wke")',
+    examples: '"abcabcbb" => 3 ("abc") ; "bbbbb" => 1 ; "pwwkew" => 3 ("wke")',
     complexity: { time: "O(n)", space: "O(min(n, α)) where α = alphabet size" },
     component: <LongestSubstring />,
   },

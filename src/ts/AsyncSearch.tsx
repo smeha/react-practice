@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const res = await fetch(url, { signal });
@@ -27,39 +27,38 @@ export function AsyncSearch() {
 
   const abortRef = useRef<AbortController | null>(null);
 
-  // stable debounced fn — created once, captures stable refs/setters
-  const search = useMemo(
-    () =>
-      debounce(async (q: string) => {
-        abortRef.current?.abort(); // cancel previous in-flight request
-        abortRef.current = new AbortController();
+  // useRef guarantees a single stable instance for the component's lifetime
+  // (useMemo with [] is only a hint — React may discard and recompute it)
+  const searchRef = useRef(
+    debounce(async (q: string) => {
+      abortRef.current?.abort();
+      abortRef.current = new AbortController();
 
-        if (!q.trim()) {
-          setResults([]);
-          setLoading(false);
-          return;
-        }
+      if (!q.trim()) {
+        setResults([]);
+        setLoading(false);
+        return;
+      }
 
-        setLoading(true);
-        setError(null);
+      setLoading(true);
+      setError(null);
 
-        try {
-          const data = await fetchJson<Post[]>(
-            `https://jsonplaceholder.typicode.com/posts?title_like=${encodeURIComponent(q)}`,
-            abortRef.current.signal
-          );
-          setResults(data.slice(0, 5));
-          setLoading(false);
-        } catch (e) {
-          if ((e as Error).name === "AbortError") return; // new query took over, leave state alone
-          setError((e as Error).message);
-          setLoading(false);
-        }
-      }, 400),
-    []
+      try {
+        const data = await fetchJson<Post[]>(
+          `https://jsonplaceholder.typicode.com/posts?title_like=${encodeURIComponent(q)}`,
+          abortRef.current.signal
+        );
+        setResults(data.slice(0, 5));
+        setLoading(false);
+      } catch (e) {
+        if ((e as Error).name === "AbortError") return;
+        setError((e as Error).message);
+        setLoading(false);
+      }
+    }, 400)
   );
 
-  useEffect(() => { search(query); }, [query, search]);
+  useEffect(() => { searchRef.current(query); }, [query]);
   useEffect(() => () => { abortRef.current?.abort(); }, []); // abort on unmount
 
   const empty = !loading && !error && query.trim() && results.length === 0;
