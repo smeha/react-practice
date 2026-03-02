@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function fakeToggleLike() {
   return new Promise((resolve, reject) => {
@@ -14,12 +14,12 @@ export function LikeButton() {
   const onClick = async () => {
     const next = !liked;
     setErr(null);
-    setLiked(next);      // optimistic
+    setLiked(next); // optimistic
     setSaving(true);
     try {
       await fakeToggleLike();
     } catch (e) {
-      setLiked(!next);   // revert
+      setLiked(!next); // revert
       setErr(e.message);
     } finally {
       setSaving(false);
@@ -31,7 +31,7 @@ export function LikeButton() {
       <button onClick={onClick} disabled={saving}>
         {liked ? "♥ Liked" : "♡ Like"}
       </button>
-      {saving && <span> saving…</span>}
+      {saving && <span>saving...</span>}
       {err && <div style={{ color: "crimson" }}>{err}</div>}
     </div>
   );

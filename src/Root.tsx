@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AppJS from "./js/App";
+import AppJS from "./js/AppJS";
 import AppTS from "./ts/AppTS";
 
 type Page = "home" | "js" | "ts";

@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 
-export async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
+async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json() as Promise<T>;
 }
 
-export function debounce<TArgs extends unknown[]>(
+function debounce<TArgs extends unknown[]>(
   fn: (...args: TArgs) => void,
   ms: number
 ) {

@@ -31,7 +31,7 @@ export function LikeButton() {
       <button onClick={onClick} disabled={saving}>
         {liked ? "♥ Liked" : "♡ Like"}
       </button>
-      {saving && <span> saving...</span>}
+      {saving && <span>saving...</span>}
       {err && <div style={{ color: "crimson" }}>{err}</div>}
     </div>
   );

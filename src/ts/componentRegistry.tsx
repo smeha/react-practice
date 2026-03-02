@@ -30,7 +30,7 @@ export const sections: Section[] = [
   {
     title: "Debounced Search (avoid stale results)",
     description:
-      "Input box. After user stops typing for 300ms, call fakeSearch(query) and render results. Show loading. If user types fast, older responses will not overwrite newer ones.",
+      "Input box. After user stops typing for 300ms, call fetchResults(query) and render results. Show loading. If user types fast, older responses will not overwrite newer ones.",
     complexity: { time: "O(1) per keystroke, O(r) render", space: "O(r) results buffer" },
     component: <DebouncedSearch />,
   },
