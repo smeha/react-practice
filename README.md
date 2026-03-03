@@ -11,3 +11,9 @@ The project is to practice JavaScript and TypeScript in React + Vite
 ```bash
 npm install
 npm run dev
+```
+
+## Test built-in lint
+```bash
+npm run lint
+```
