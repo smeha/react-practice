@@ -49,7 +49,7 @@ export const sections: Section[] = [
   {
     title: "Data Fetch with Loading / Error / Retry",
     description: "Fetch data on mount. Shows loading, error message, and a Retry button.",
-    complexity: { time: "O(1) trigger ; network-bound fetch", space: "O(n) response" },
+    complexity: { time: "O(1) trigger + O(n) to process/render the fetched list", space: "O(n) response" },
     component: <FetchWithRetry />,
   },
   {
@@ -115,7 +115,7 @@ export const sections: Section[] = [
     title: "Async Search — debounce + abort",
     description: "Debounce input (400 ms), fetch on each settled query, abort any in-flight request when a new one starts. Handle loading / error states.",
     examples: "Uses JSONPlaceholder '/posts?title_like=...' => shows first 5 results",
-    complexity: { time: "O(1) debounce ; O(r) render", space: "O(r) results" },
+    complexity: { time: "O(n) dominated by response size", space: "O(r) => effectively O(1)" },
     component: <AsyncSearch />,
   },
   {

@@ -6,17 +6,6 @@ async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-function debounce<TArgs extends unknown[]>(
-  fn: (...args: TArgs) => void,
-  ms: number
-) {
-  let t: ReturnType<typeof setTimeout> | undefined;
-  return (...args: TArgs) => {
-    if (t) clearTimeout(t);
-    t = setTimeout(() => fn(...args), ms);
-  };
-}
-
 type Post = { id: number; title: string };
 
 export function AsyncSearch() {
@@ -27,39 +16,41 @@ export function AsyncSearch() {
 
   const abortRef = useRef<AbortController | null>(null);
 
-  // useRef guarantees a single stable instance for the component's lifetime
-  // (useMemo with [] is only a hint — React may discard and recompute it)
-  const searchRef = useRef(
-    debounce(async (q: string) => {
+  useEffect(() => {
+    const q = query.trim();
+
+    // debounce
+    const t = setTimeout(() => {
       abortRef.current?.abort();
       abortRef.current = new AbortController();
 
-      if (!q.trim()) {
+      if (!q) {
         setResults([]);
         setLoading(false);
+        setError(null);
         return;
       }
 
       setLoading(true);
       setError(null);
 
-      try {
-        const data = await fetchJson<Post[]>(
-          `https://jsonplaceholder.typicode.com/posts?title_like=${encodeURIComponent(q)}`,
-          abortRef.current.signal
-        );
-        setResults(data.slice(0, 5));
-        setLoading(false);
-      } catch (e) {
-        if ((e as Error).name === "AbortError") return;
-        setError((e as Error).message);
-        setLoading(false);
-      }
-    }, 400)
-  );
+      fetchJson<Post[]>(`https://jsonplaceholder.typicode.com/posts?title_like=${encodeURIComponent(q)}`, abortRef.current.signal)
+        .then((data) => {
+          setResults(data.slice(0, 5));
+          setLoading(false);
+        })
+        .catch((e) => {
+          if ((e as Error).name === "AbortError") return;
+          setError((e as Error).message);
+          setLoading(false);
+        });
+    }, 400);
 
-  useEffect(() => { searchRef.current(query); }, [query]);
-  useEffect(() => () => { abortRef.current?.abort(); }, []); // abort on unmount
+    return () => {
+      clearTimeout(t);
+      abortRef.current?.abort();
+    };
+  }, [query]);
 
   const empty = !loading && !error && query.trim() && results.length === 0;
 
@@ -71,9 +62,9 @@ export function AsyncSearch() {
         placeholder="search posts..."
         style={{ width: 240 }}
       />
-      {loading && <span style={{ marginLeft: 10, color: "#888" }}>loading…</span>}
-      {error   && <span style={{ marginLeft: 10, color: "red"  }}>{error}</span>}
-      {empty   && <span style={{ marginLeft: 10, color: "#888" }}>no results</span>}
+      {loading && <span style={{ marginLeft: 10, color: "#888" }}>loading...</span>}
+      {error && <span style={{ marginLeft: 10, color: "red" }}>{error}</span>}
+      {empty && <span style={{ marginLeft: 10, color: "#888" }}>no results</span>}
 
       {results.length > 0 && (
         <ul style={{ marginTop: 8, paddingLeft: 16 }}>

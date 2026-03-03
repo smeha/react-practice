@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 
 function fakeFetch(): Promise<string[]> {
   return new Promise((resolve, reject) => {
-    setTimeout(
-      () => (Math.random() < 0.3 ? reject(new Error("Network")) : resolve(["A", "B", "C"])),
-      300
-    );
+    setTimeout(() => Math.random() < 0.3 ? reject(new Error("Network")) : resolve(["A", "B", "C"]), 300);
   });
 }
 
@@ -15,28 +12,43 @@ export function FetchWithRetry() {
   const [err, setErr] = useState<string | null>(null);
   const [tick, setTick] = useState(0); // triggers refetch
 
-  useEffect(() => {
-    let alive = true;
+  // event handler is the right place to kick off local UI state
+  const retry = () => {
     setLoading(true);
     setErr(null);
+    setTick((t) => t + 1);
+  };
+
+  useEffect(() => {
+    let alive = true;
 
     fakeFetch()
-      .then((res) => alive && setData(res))
-      .catch((e: Error) => alive && setErr(e.message))
-      .finally(() => alive && setLoading(false));
+      .then((res) => {
+        if (!alive) return;
+        setData(res);
+        setErr(null);
+        setLoading(false);
+      })
+      .catch((e: Error) => {
+        if (!alive) return;
+        setErr(e.message);
+        setLoading(false);
+      });
 
     return () => {
-      alive = false; // prevents setState after unmount
+      alive = false;
     };
   }, [tick]);
 
   if (loading) return <div>Loading...</div>;
   if (err)
     return (
-      <div>
-        Error: {err} <button onClick={() => setTick((t) => t + 1)}>Retry</button>
-      </div>
+      <div>Error: {err} <button onClick={retry}>Retry</button></div>
     );
 
-  return <ul>{data.map((x) => <li key={x}>{x}</li>)}</ul>;
+  return (
+    <ul>
+      {data.map((x) => (<li key={x}>{x}</li>))}
+    </ul>
+  );
 }
