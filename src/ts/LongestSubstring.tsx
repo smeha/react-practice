@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function lengthOfLongestSubstring(s: string): { length: number; substring: string } {
+// eslint-disable-next-line react-refresh/only-export-components
+export function lengthOfLongestSubstring(s: string): { length: number; substring: string } {
   const seen = new Map<string, number>();
   let best = 0, start = 0, bestStart = 0;
   for (let i = 0; i < s.length; i++) {

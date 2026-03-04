@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-type CaseEventType = "note" | "document" | "email" | "call";
+export type CaseEventType = "note" | "document" | "email" | "call";
 
-type CaseEvent = {
+export type CaseEvent = {
   id: string;
   type: CaseEventType;
   createdAt: string; // ISO
@@ -11,7 +11,8 @@ type CaseEvent = {
 
 type Grouped = Record<string, CaseEvent[]>; // key = YYYY-MM-DD
 
-function processEvents(
+// eslint-disable-next-line react-refresh/only-export-components
+export function processEvents(
   events: readonly CaseEvent[],
   opts?: { type?: CaseEventType; limit?: number }
 ) {

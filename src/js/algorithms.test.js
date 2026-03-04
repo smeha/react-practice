@@ -191,7 +191,7 @@ describe("sumIfTriple", () => {
     expect(sumIfTriple([1, 2, 3, 3])).toBe(0);
   });
   it("negative triple still triggers sum of positives", () => {
-    // three -1s: hasTriple = true → sumPositives([-1,-1,-1,5]) = 5
+    // three -1s: hasTriple = true => sumPositives([-1,-1,-1,5]) = 5
     expect(sumIfTriple([-1, -1, -1, 5])).toBe(5);
   });
   it("returns 0 for empty array", () => {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function isValid(s: string): boolean {
+// eslint-disable-next-line react-refresh/only-export-components
+export function isValid(s: string): boolean {
   const stack: string[] = [];
   const match: Record<string, string> = { ")": "(", "]": "[", "}": "{" };
   for (const ch of s) {

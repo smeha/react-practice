@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function twoSum(nums: number[], target: number): [number, number] | null {
+// eslint-disable-next-line react-refresh/only-export-components
+export function twoSum(nums: number[], target: number): [number, number] | null {
   const seen = new Map<number, number>();
   for (let i = 0; i < nums.length; i++) {
     const complement = target - nums[i];

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function isAnagram(s: string, t: string): boolean {
+// eslint-disable-next-line react-refresh/only-export-components
+export function isAnagram(s: string, t: string): boolean {
   if (s.length !== t.length) return false;
   const freq: Record<string, number> = {};
   for (const ch of s) freq[ch] = (freq[ch] ?? 0) + 1;

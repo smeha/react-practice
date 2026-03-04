@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function fibonacci(n: number): bigint {
+// eslint-disable-next-line react-refresh/only-export-components
+export function fibonacci(n: number): bigint {
   if (!Number.isInteger(n) || n < 0) {
     throw new Error("n must be a non-negative integer");
   }

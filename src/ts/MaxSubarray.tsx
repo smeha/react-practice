@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function maxSubarray(nums: number[]): { sum: number; from: number; to: number } {
+// eslint-disable-next-line react-refresh/only-export-components
+export function maxSubarray(nums: number[]): { sum: number; from: number; to: number } {
   if (nums.length === 0) throw new Error("array must be non-empty");
   let best = nums[0], cur = nums[0], from = 0, to = 0, start = 0;
   for (let i = 1; i < nums.length; i++) {
