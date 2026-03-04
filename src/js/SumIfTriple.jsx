@@ -4,7 +4,7 @@ function sumPositives(values) {
   return values.reduce((sum, n) => (n > 0 ? sum + n : sum), 0);
 }
 
-function sumIfTriple(values) {
+export function sumIfTriple(values) {
   const freq = values.reduce((acc, n) => ({ ...acc, [n]: (acc[n] || 0) + 1 }), {});
   const hasTriple = Object.values(freq).some((count) => count >= 3);
   return hasTriple ? sumPositives(values) : 0;

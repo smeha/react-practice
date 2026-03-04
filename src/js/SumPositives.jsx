@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function sumPositives(values) {
+export function sumPositives(values) {
   return values.reduce((sum, n) => (n > 0 ? sum + n : sum), 0);
 }
 

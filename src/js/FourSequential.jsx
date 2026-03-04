@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function hasFourSequential(values) {
+export function hasFourSequential(values) {
   const sorted = [...values].sort((a, b) => a - b);
   let count = 1;
   for (let i = 0; i < sorted.length - 1; i++) {

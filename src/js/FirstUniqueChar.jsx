@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function firstUniqChar(s) {
+export function firstUniqChar(s) {
   const freq = new Map();
   for (const ch of s) freq.set(ch, (freq.get(ch) || 0) + 1);
   for (let i = 0; i < s.length; i++) {

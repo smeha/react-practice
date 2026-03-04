@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function isPalindrome(s) {
+export function isPalindrome(s) {
   const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, "");
   let left = 0, right = cleaned.length - 1;
   while (left < right) {

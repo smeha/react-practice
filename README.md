@@ -13,7 +13,18 @@ npm install
 npm run dev
 ```
 
-## Test built-in lint
+## Built-in lint test
 ```bash
 npm run lint
+```
+
+## Run test cases
+- watch mode
+```bash
+npm test
+```
+
+- single run (CI-style)
+```bash
+npm run test:run
 ```

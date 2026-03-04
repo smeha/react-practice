@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function searchingChallenge(str) {
+export function searchingChallenge(str) {
   let balance = 0;
   for (const ch of str) {
     if (ch === "(") balance++;

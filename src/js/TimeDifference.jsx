@@ -10,12 +10,13 @@ function toMinutes(timeStr) {
   return h * 60 + m;
 }
 
-function stringChallenge(str) {
+export function stringChallenge(str) {
   const parts = str.trim().split("-");
   if (parts.length !== 2) return null;
   try {
     const start = toMinutes(parts[0]);
     const end = toMinutes(parts[1]);
+    if (isNaN(start) || isNaN(end)) return null;
     let diff = end - start;
     if (diff < 0) diff += 24 * 60;
     return diff;

@@ -13,7 +13,7 @@ const MOCK_WIZARDS = [
   { name: "Hannah", house: "Hufflepuff", friends: ["Ernie", "Justin"] },
 ];
 
-function bestPerHouse(data) {
+export function bestPerHouse(data) {
   const best = {};
   for (const char of data) {
     const house = char.house?.trim();
