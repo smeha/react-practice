@@ -1,4 +1,4 @@
-# About JS and TS practice project
+# JavaScript and TypeScript practice project
 The project is to practice JavaScript and TypeScript in React + Vite
 
 ## Tech Stack
