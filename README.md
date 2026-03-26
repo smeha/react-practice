@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-## Built-in lint test
+## Run lint test
 ```bash
 npm run lint
 ```
